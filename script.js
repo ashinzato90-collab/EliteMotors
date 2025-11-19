@@ -19,7 +19,7 @@ const cars = [
         traction: '4WD',
         acceleration: '3.6 segundos',
         description: 'El SUV más rápido del mundo. Una combinación perfecta de lujo italiano, rendimiento deportivo y versatilidad. Ideal para quienes buscan destacar sin renunciar al confort y la elegancia.',
-        image: 'lambo-urus-blue.jpg' // CAMBIA ESTA RUTA por tu imagen
+        image: 'lambo-urus-turq.jpg' // CAMBIA ESTA RUTA por tu imagen
     },
     {
         id: 2,
@@ -340,3 +340,4 @@ console.log('  - addCar(carData) : Agregar un nuevo auto');
 console.log('  - cars : Ver todos los autos');
 
 console.log('  - filterCars("deportivo") : Filtrar por categoría');
+
