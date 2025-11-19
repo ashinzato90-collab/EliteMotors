@@ -19,7 +19,7 @@ const cars = [
         traction: '4WD',
         acceleration: '3.6 segundos',
         description: 'El SUV más rápido del mundo. Una combinación perfecta de lujo italiano, rendimiento deportivo y versatilidad. Ideal para quienes buscan destacar sin renunciar al confort y la elegancia.',
-        image: 'img/lambo-urus-blue.jpg' // CAMBIA ESTA RUTA por tu imagen
+        image: 'lambo-urus-blue.jpg' // CAMBIA ESTA RUTA por tu imagen
     },
     {
         id: 2,
@@ -33,7 +33,7 @@ const cars = [
         traction: 'AWD',
         acceleration: '3.4 segundos',
         description: 'Puro rendimiento alemán. El Audi R8 combina tecnología de punta con un diseño agresivo y elegante. Motor V10 que ofrece una experiencia de conducción incomparable.',
-        image: 'img/audi-r8-white.jpg' // CAMBIA ESTA RUTA por tu imagen
+        image: 'audi-r8-white.jpg' // CAMBIA ESTA RUTA por tu imagen
     },
     
 ];
@@ -338,4 +338,5 @@ function addCar(carData) {
 console.log('💡 Comandos disponibles en consola:');
 console.log('  - addCar(carData) : Agregar un nuevo auto');
 console.log('  - cars : Ver todos los autos');
+
 console.log('  - filterCars("deportivo") : Filtrar por categoría');
