@@ -104,7 +104,7 @@ nav {
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url(img/lambo-urus-blue.jpg) center/cover;
+                url(lambo-urus-blue.jpg) center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -740,4 +740,5 @@ footer {
     .feature-grid {
         grid-template-columns: 1fr;
     }
+
 }
