@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Motors - Renta de Autos de Lujo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo" onclick="showPage('home')">Elite Motors</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Inicio</a></li>
+                <li><a href="#" onclick="scrollToFleet()">Nuestra Flota</a></li>
+                <li><a href="#" onclick="scrollToContact()">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="homePage" class="home-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Experimenta el Lujo</h1>
+                <p>Los autos más exclusivos del mundo a tu alcance</p>
+                <a href="#" class="cta-button" onclick="scrollToFleet()">Explorar Colección</a>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Vehículos Premium</h3>
+                    <p>Flota exclusiva de marcas de alto prestigio</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Servicio Inmediato</h3>
+                    <p>Entrega en menos de 2 horas</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Seguro Completo</h3>
+                    <p>Cobertura total incluida</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Experiencia VIP</h3>
+                    <p>Atención personalizada 24/7</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fleet -->
+        <section class="fleet" id="fleet">
+            <h2 class="section-title">Nuestra <span>Flota</span></h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterCars('all')">Todos</button>
+                <button class="filter-btn" onclick="filterCars('deportivo')">Deportivos</button>
+                <button class="filter-btn" onclick="filterCars('suv')">SUV</button>
+                <button class="filter-btn" onclick="filterCars('sedan')">Sedán</button>
+            </div>
+            <div class="cars-grid" id="carsGrid"></div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact" id="contact">
+            <h2 class="section-title">Reserva <span>Ahora</span></h2>
+            <div class="contact-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="carType" required>
+                            <option value="">Selecciona un vehículo</option>
+                            <option>Lamborghini Urus</option>
+                            <option>Audi R8</option>
+                            <option>Ferrari 488 GTB</option>
+                            <option>Rolls Royce Phantom</option>
+                            <option>Porsche 911 Turbo S</option>
+                            <option>Range Rover Autobiography</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="4" placeholder="Mensaje adicional"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Solicitud</button>
+                </form>
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="info-item">
+                        <strong>📍 Dirección</strong>
+                        <p>Av. Benavides<br></p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📞 Teléfono</strong>
+                        <p>+51 931 038 307</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>
+                    </div>
+                    <div class="info-item">
+                        <strong>🕐 Horario</strong>
+                        <p>Lunes a Domingo<br>8:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Detail Page -->
+    <div id="detailPage" class="detail-page"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Elite Motors</h4>
+                <p>La experiencia de lujo que mereces</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Inicio</a></li>
+                    <li><a href="#" onclick="scrollToFleet()">Flota</a></li>
+                    <li><a href="#" onclick="scrollToContact()">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elite Motors. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

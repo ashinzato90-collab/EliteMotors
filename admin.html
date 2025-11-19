@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Elite Motors</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="header-content">
+            <h1>🏆 Elite Motors - Panel Admin</h1>
+            <div class="admin-info">
+                <span id="adminName">Administrador</span>
+                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <h2>🔐 Acceso Administrativo</h2>
+            <p>Elite Motors</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Usuario" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="login-btn">Iniciar Sesión</button>
+                <p class="login-hint">Usuario: admin | Contraseña: elite2024</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-info">
+                    <h3 id="totalReservations">0</h3>
+                    <p>Total Reservas</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                    <h3 id="todayReservations">0</h3>
+                    <p>Reservas Hoy</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🚗</div>
+                <div class="stat-info">
+                    <h3 id="popularCar">-</h3>
+                    <p>Auto Más Solicitado</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3 id="estimatedRevenue">$0</h3>
+                    <p>Ingresos Estimados</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters and Actions -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por nombre, email o teléfono...">
+            </div>
+            <div class="filter-actions">
+                <select id="filterDate">
+                    <option value="all">Todas las fechas</option>
+                    <option value="today">Hoy</option>
+                    <option value="week">Esta semana</option>
+                    <option value="month">Este mes</option>
+                </select>
+                <button class="action-btn" onclick="exportToCSV()">📊 Exportar CSV</button>
+                <button class="action-btn" onclick="exportToExcel()">📈 Exportar Excel</button>
+                <button class="action-btn danger" onclick="clearAllData()">🗑️ Limpiar Datos</button>
+            </div>
+        </div>
+
+        <!-- Reservations Table -->
+        <div class="table-container">
+            <table id="reservationsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha Reserva</th>
+                        <th>Cliente</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Vehículo</th>
+                        <th>Mensaje</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="reservationsBody">
+                    <!-- Las reservas se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+            <div id="noData" class="no-data" style="display: none;">
+                <p>📭 No hay reservas registradas</p>
+                <p class="hint">Las reservas aparecerán aquí cuando los clientes envíen el formulario</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalle -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Detalles de la Reserva</h2>
+            <div id="modalBody"></div>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="contactClient()">📞 Contactar Cliente</button>
+                <button class="btn-secondary" onclick="downloadReservationPDF()">📄 Descargar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
