@@ -235,38 +235,37 @@ function setupForm() {
         e.preventDefault();
         
         // Obtener datos del formulario
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            carType: document.getElementById('carType').value,
-            date: document.getElementById('date').value,
-            message: document.getElementById('message').value,
-            timestamp: new Date().toLocaleString('es-MX')
-        };
+        const formData = new FormData(form);
         
-        // Mostrar en consola
-        console.log('===== NUEVA RESERVA =====');
-        console.log('Nombre:', formData.name);
-        console.log('Email:', formData.email);
-        console.log('Teléfono:', formData.phone);
-        console.log('Vehículo:', formData.carType);
-        console.log('Fecha:', formData.date);
-        console.log('Mensaje:', formData.message);
-        console.log('Enviado:', formData.timestamp);
-        console.log('========================');
-        
-        // Mostrar notificación de éxito
-        showNotification(
-            '¡Solicitud enviada exitosamente! Nos pondremos en contacto pronto.',
-            '#28a745'
-        );
-        
-        // Limpiar formulario
-        form.reset();
-        
-        // Scroll al inicio
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Enviar a Formspree
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                showNotification(
+                    '¡Solicitud enviada exitosamente! Nos pondremos en contacto pronto.',
+                    '#28a745'
+                );
+                form.reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                showNotification(
+                    'Hubo un error. Por favor intenta nuevamente.',
+                    '#dc3545'
+                );
+            }
+        })
+        .catch(error => {
+            showNotification(
+                'Error de conexión. Verifica tu internet.',
+                '#dc3545'
+            );
+        });
     });
 }
 
@@ -340,5 +339,6 @@ console.log('  - addCar(carData) : Agregar un nuevo auto');
 console.log('  - cars : Ver todos los autos');
 
 console.log('  - filterCars("deportivo") : Filtrar por categoría');
+
 
 
