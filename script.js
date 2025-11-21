@@ -1,11 +1,11 @@
 /* ========================================
    ELITE MOTORS - SCRIPT.JS
+   CONFIGURADO CON FORMSPREE
    ======================================== */
 
 // ========================================
 // BASE DE DATOS DE AUTOS
 // ========================================
-// IMPORTANTE: Reemplaza las URLs de las imágenes con las rutas de tus propias imágenes
 const cars = [
     {
         id: 1,
@@ -19,7 +19,7 @@ const cars = [
         traction: '4WD',
         acceleration: '3.6 segundos',
         description: 'El SUV más rápido del mundo. Una combinación perfecta de lujo italiano, rendimiento deportivo y versatilidad. Ideal para quienes buscan destacar sin renunciar al confort y la elegancia.',
-        image: 'lambo-urus-turq.jpg' // CAMBIA ESTA RUTA por tu imagen
+        image: 'lambo-urus-turq.jpg'
     },
     {
         id: 2,
@@ -33,9 +33,8 @@ const cars = [
         traction: 'AWD',
         acceleration: '3.4 segundos',
         description: 'Puro rendimiento alemán. El Audi R8 combina tecnología de punta con un diseño agresivo y elegante. Motor V10 que ofrece una experiencia de conducción incomparable.',
-        image: 'audi-r8-white.jpg' // CAMBIA ESTA RUTA por tu imagen
+        image: 'audi-r8-white.jpg'
     },
-    
 ];
 
 // ========================================
@@ -56,13 +55,13 @@ function init() {
     setMinDate();
     console.log('✅ Elite Motors - Sistema inicializado');
     console.log(`🚗 ${cars.length} vehículos cargados`);
+    console.log('📧 Formulario con envío a correo activado');
 }
 
 // ========================================
 // FUNCIONES DE RENDERIZADO
 // ========================================
 
-// Renderizar autos en el grid
 function renderCars() {
     const grid = document.getElementById('carsGrid');
     const filtered = currentFilter === 'all' 
@@ -97,13 +96,11 @@ function renderCars() {
 function filterCars(category) {
     currentFilter = category;
     
-    // Actualizar botones activos
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     event.target.classList.add('active');
     
-    // Renderizar autos filtrados
     renderCars();
 }
 
@@ -210,7 +207,6 @@ function showCarDetail(id) {
 function reserveFromDetail(carName) {
     scrollToContact();
     
-    // Pre-llenar el select con el auto seleccionado
     setTimeout(() => {
         const carSelect = document.getElementById('carType');
         if (carSelect) {
@@ -225,7 +221,7 @@ function reserveFromDetail(carName) {
 }
 
 // ========================================
-// FORMULARIO DE CONTACTO
+// FORMULARIO DE CONTACTO - ENVÍA A TU CORREO
 // ========================================
 
 function setupForm() {
@@ -234,10 +230,16 @@ function setupForm() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Deshabilitar botón mientras se envía
+        const submitBtn = form.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+        
         // Obtener datos del formulario
         const formData = new FormData(form);
         
-        // Enviar a Formspree
+        // ENVIAR A FORMSPREE (que luego te envía a tu correo)
         fetch(form.action, {
             method: 'POST',
             body: formData,
@@ -247,24 +249,57 @@ function setupForm() {
         })
         .then(response => {
             if (response.ok) {
+                // ✅ ÉXITO - El mensaje se envió a tu correo
                 showNotification(
                     '¡Solicitud enviada exitosamente! Nos pondremos en contacto pronto.',
                     '#28a745'
                 );
+                
+                // Mostrar en consola para verificación
+                console.log('===== NUEVA RESERVA ENVIADA A TU CORREO =====');
+                console.log('Nombre:', formData.get('name'));
+                console.log('Email:', formData.get('email'));
+                console.log('Teléfono:', formData.get('phone'));
+                console.log('Vehículo:', formData.get('carType'));
+                console.log('Fecha:', formData.get('date'));
+                console.log('Mensaje:', formData.get('message'));
+                console.log('Hora:', new Date().toLocaleString('es-PE'));
+                console.log('============================================');
+                
+                // Limpiar formulario
                 form.reset();
+                
+                // Scroll al inicio
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                showNotification(
-                    'Hubo un error. Por favor intenta nuevamente.',
-                    '#dc3545'
-                );
+                // ❌ ERROR del servidor
+                response.json().then(data => {
+                    if (data.errors) {
+                        showNotification(
+                            'Error: ' + data.errors.map(e => e.message).join(', '),
+                            '#dc3545'
+                        );
+                    } else {
+                        showNotification(
+                            'Hubo un error al enviar. Por favor intenta nuevamente.',
+                            '#dc3545'
+                        );
+                    }
+                });
             }
         })
         .catch(error => {
+            // ❌ ERROR de conexión
+            console.error('Error de conexión:', error);
             showNotification(
-                'Error de conexión. Verifica tu internet.',
+                'Error de conexión. Verifica tu internet e intenta nuevamente.',
                 '#dc3545'
             );
+        })
+        .finally(() => {
+            // Rehabilitar botón
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
         });
     });
 }
@@ -305,7 +340,6 @@ function showNotification(message, color) {
 // FUNCIONES AUXILIARES
 // ========================================
 
-// Para agregar nuevos autos fácilmente
 function addCar(carData) {
     cars.push({
         id: cars.length + 1,
@@ -315,21 +349,6 @@ function addCar(carData) {
     console.log(`✅ Nuevo auto agregado: ${carData.name} ${carData.model}`);
 }
 
-// Ejemplo de uso:
-// addCar({
-//     name: 'McLaren',
-//     model: '720S',
-//     category: 'deportivo',
-//     price: '$9,500',
-//     power: '720 HP',
-//     speed: '341 km/h',
-//     transmission: 'Automática 7 vel',
-//     traction: 'RWD',
-//     acceleration: '2.9 segundos',
-//     description: 'Superdeportivo británico...',
-//     image: 'img/mclaren-720s.jpg'
-// });
-
 // ========================================
 // COMANDOS DE CONSOLA ÚTILES
 // ========================================
@@ -337,8 +356,10 @@ function addCar(carData) {
 console.log('💡 Comandos disponibles en consola:');
 console.log('  - addCar(carData) : Agregar un nuevo auto');
 console.log('  - cars : Ver todos los autos');
-
 console.log('  - filterCars("deportivo") : Filtrar por categoría');
+console.log('');
+console.log('📧 Sistema de correo: ACTIVADO');
+console.log('⚠️  Recuerda configurar tu código de Formspree en index.html');
 
 
 
