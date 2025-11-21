@@ -12,7 +12,7 @@ const cars = [
         name: 'Lamborghini',
         model: 'Urus',
         category: 'suv',
-        price: 'S/3,370',
+        price: '$500',
         power: '650 HP',
         speed: '305 km/h',
         transmission: 'Automática 8 vel',
@@ -26,7 +26,7 @@ const cars = [
         name: 'Audi',
         model: 'R8',
         category: 'deportivo',
-        price: 'S/2,700',
+        price: '$300',
         power: '562 HP',
         speed: '329 km/h',
         transmission: 'Automática 7 vel',
@@ -340,4 +340,5 @@ console.log('  - addCar(carData) : Agregar un nuevo auto');
 console.log('  - cars : Ver todos los autos');
 
 console.log('  - filterCars("deportivo") : Filtrar por categoría');
+
 
