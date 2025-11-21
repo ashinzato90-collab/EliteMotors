@@ -73,29 +73,29 @@
         <section class="contact" id="contact">
             <h2 class="section-title">Reserva <span>Ahora</span></h2>
             <div class="contact-container">
-                <form class="contact-form" id="contactForm">
+                <!-- FORMULARIO MODIFICADO CON FORMSPREE -->
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mpwnwqjv" method="POST">
                     <div class="form-group">
-                        <input type="text" id="name" placeholder="Nombre completo" required>
+                        <input type="text" id="name" name="name" placeholder="Nombre completo" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder="Correo electrónico" required>
+                        <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" id="phone" placeholder="Teléfono" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Teléfono" required>
                     </div>
                     <div class="form-group">
-                        <select id="carType" required>
+                        <select id="carType" name="carType" required>
                             <option value="">Selecciona un vehículo</option>
                             <option>Lamborghini Urus</option>
                             <option>Audi R8</option>
-                            
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="date" id="date" required>
+                        <input type="date" id="date" name="date" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" rows="4" placeholder="Mensaje adicional"></textarea>
+                        <textarea id="message" name="message" rows="4" placeholder="Mensaje adicional"></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Enviar Solicitud</button>
                 </form>
@@ -108,9 +108,6 @@
                     <div class="info-item">
                         <strong>📞 Teléfono</strong>
                         <p>+51 931 038 307</p>
-                    </div>
-                    <div class="info-item">
-                        <strong>
                     </div>
                     <div class="info-item">
                         <strong>🕐 Horario</strong>
@@ -142,7 +139,6 @@
             </div>
             <div class="footer-section">
                 
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -152,6 +148,6 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
+
 
